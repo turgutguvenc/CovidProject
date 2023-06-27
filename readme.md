@@ -15,5 +15,11 @@ covid_vac - relevant records in the covid.csv file for vaccination, show the vac
 
 sql_queries.py: has necessary SQL queries for creating and inserting values to covid_death and covid_vac datasets. 
 create_tables.py: contains SQL and Python code to connect to PostgreSQL, and create our new database and tables. insert values to tables.
-eda.sql: Making Exploratory Data Analysis with SQL get insight and understand our tables. (CTE, Views, Stored Procedures, Trigers, user defiend functions ...)
+eda.sql: Making Exploratory Data Analysis with SQL to get insight and understand our tables. (CTE, Views, Stored Procedures, Triggers, user-defined functions ...)
+
+Finally, I connected Postgresql to Power BI for data visualization,
+<img width="1466" alt="image" src="https://github.com/turgutguvenc/CovidProject/assets/63226091/51fe3ccb-f71a-43a3-844a-b373d79aa47f">
+<img width="1469" alt="image" src="https://github.com/turgutguvenc/CovidProject/assets/63226091/34b9dedd-72ee-4c8a-970c-a3e1ec4871f1">
+
+
 
