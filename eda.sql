@@ -192,3 +192,62 @@ JOIN covid_vaccine v
 WHERE d.continent IS NOT null	
 ORDER BY 2,3
 
+-- Creating Stored Producers 
+-- Let's say we need to see the total death by country frequently
+
+
+SELECT location,  SUM(total_deaths) totaldeath
+FROM covid_death
+WHERE continent IS NOT NULL AND total_deaths IS NOT NULL
+AND location = 'Brazil'
+GROUP BY location
+ORDER BY totaldeath DESC;
+
+
+-- we can create stored Procude for that 
+-- Drop the existing stored procedure if it exists
+DROP PROCEDURE IF EXISTS get_total_death_by_location(varchar, OUT location_val varchar, OUT totaldeath_val bigint);
+
+-- Create the stored procedure with the desired changes
+CREATE OR REPLACE PROCEDURE get_total_death_by_location(
+    country_name varchar,
+    OUT location_val varchar,
+    OUT totaldeath_val bigint
+)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+    SELECT location, SUM(total_deaths) INTO location_val, totaldeath_val
+    FROM covid_death
+    WHERE continent IS NOT NULL AND total_deaths IS NOT NULL
+        AND location = country_name
+    GROUP BY location;
+
+END;
+$$;
+
+-- Declare variables to store the result
+DO $$
+DECLARE
+    result_location_val varchar;
+    result_totaldeath_val bigint;
+BEGIN
+    -- Use the created stored procedure
+    CALL get_total_death_by_location('Brazil', result_location_val, result_totaldeath_val);
+
+    -- Display the result
+    RAISE NOTICE 'Location: %, Total Deaths: %', result_location_val, result_totaldeath_val;
+END;
+$$;
+
+
+
+-- Create your own function in POSTGRESQL(user defined functions)
+-- 
+CREATE FUNCTION get_year(val date) RETURNS integer AS $$
+BEGIN
+RETURN EXTRACT(YEAR FROM val);
+END; $$
+LANGUAGE PLPGSQL;
+-- Calling that function
+SELECT get_year('01/02/2022');
