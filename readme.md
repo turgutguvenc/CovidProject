@@ -15,5 +15,5 @@ covid_vac - relevant records in the covid.csv file for vaccination, show the vac
 
 sql_queries.py: has necessary SQL queries for creating and inserting values to covid_death and covid_vac datasets. 
 create_tables.py: contains SQL and Python code to connect to PostgreSQL, and create our new database and tables. insert values to tables.
-eda.sql: Making Exploratory Data Analysis with SQL get insight and understand our tables. (CTE, Views, Stored Procedures, Trigers ...)
+eda.sql: Making Exploratory Data Analysis with SQL get insight and understand our tables. (CTE, Views, Stored Procedures, Trigers, user defiend functions ...)
 
